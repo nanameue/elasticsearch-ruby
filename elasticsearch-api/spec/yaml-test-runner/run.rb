@@ -56,8 +56,8 @@ CLIENT = if ENV['ES_API_KEY']
          end
 
 tests_path = File.expand_path('./tmp', __dir__)
-
-logger = Logger.new($stdout)
+logfile = File.expand_path "#{tests_path}/tests-for-transport-#{ENV['TRANSPORT_VERSION']}-ruby-#{ENV['RUBY_VERSION']}.log"
+logger = Logger.new(File.open(logfile, 'w'))
 logger.level = Logger::WARN unless ENV['DEBUG']
 
 # If we're running in a release branch, download the corresponding branch for tests
